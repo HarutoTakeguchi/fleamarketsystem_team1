@@ -1,3 +1,5 @@
+// 作成者：畑
+
 package util;
 
 import java.io.File;

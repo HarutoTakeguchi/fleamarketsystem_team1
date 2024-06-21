@@ -1,20 +1,18 @@
+//作成者：畑
+
 package servlet;
 
 import java.io.IOException;
 import java.util.ArrayList;
 
+import bean.Product;
+import dao.ProductDAO;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-/**
- * 書籍管理システムにおける書籍一覧機能に関する処理をおこなうサーブレットクラス
- *
- * @author KandaITSchool
- *
- */
 @WebServlet("/saleStatue")
 public class SaleStatusServlet extends HttpServlet {
 

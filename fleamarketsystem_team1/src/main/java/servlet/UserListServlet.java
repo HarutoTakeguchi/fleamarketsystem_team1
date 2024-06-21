@@ -1,3 +1,5 @@
+//作成者：竹口
+
 package servlet;
 
 import java.io.IOException;
@@ -31,7 +33,7 @@ public class UserListServlet extends HttpServlet {
 			request.setAttribute("user_list", userList);
 
 		} catch (IllegalStateException e) {
-			error = "DB接続エラーの為、書籍登録処理は行えませんでした。";
+			error = "DB接続エラー。";
 			cmd = "logout";
 			return;
 		} catch (Exception e) {
@@ -46,7 +48,7 @@ public class UserListServlet extends HttpServlet {
 			} else {
 
 				// ④list.jspにフォワード
-				request.getRequestDispatcher("/view/list.jsp").forward(request, response);
+				request.getRequestDispatcher("/view/user_list.jsp").forward(request, response);
 			}
 		}
 	}

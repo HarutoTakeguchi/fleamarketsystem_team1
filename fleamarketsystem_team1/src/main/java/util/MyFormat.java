@@ -1,3 +1,5 @@
+//作成者：竹口
+
 package util;
 
 import java.text.DecimalFormat;

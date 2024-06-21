@@ -1,3 +1,5 @@
+//作成者：内山
+
 package dao;
 
 import java.sql.Connection;
@@ -59,7 +61,6 @@ public class ProductDAO {
 			while (rs.next()) {
 				Product product = new Product();
 				product.setProductid(rs.getInt("productid"));
-				product.setUserid(rs.getInt("userid"));
 				product.setName(rs.getString("name"));
 				product.setPrice(rs.getInt("price"));
 				product.setQuantity(rs.getInt("quantity"));
@@ -90,7 +91,7 @@ public class ProductDAO {
 	/**
 	 * 条件から合致する商品情報を取得するメソッド
 	 */
-	public Product selectByProduct(String productid) {
+	public Product selectByProduct(int productid) {
 
 		Connection con = null;
 		Statement smt = null;
@@ -108,7 +109,6 @@ public class ProductDAO {
 
 			while (rs.next()) {
 				product.setProductid(rs.getInt("productid"));
-				product.setUserid(rs.getInt("userid"));
 				product.setName(rs.getString("name"));
 				product.setPrice(rs.getInt("price"));
 				product.setQuantity(rs.getInt("quantity"));
@@ -138,24 +138,26 @@ public class ProductDAO {
 	/**
 	 * 商品情報の新規登録を行うメソッド
 	 */
-	public int insert(Product productid) {
+	public void insert(Product product) {
 
 		Connection con = null;
 		Statement smt = null;
 
-		int count = 0;
+		// SQL文を文字列として定義
+		String sql = "INSERT INTO productinfo VALUES(" + product.getProductid() + ","
+				+ product.getName() + "',"
+				+ product.getPrice() + "," + product.getQuantity() + ",'"
+				+ product.getDescription() + "'," + product.getSelldate();
 
 		try {
 
+			// getConnection()メソッドを利用して、Connectionオブジェクトを生成
 			con = getConnection();
+			// ConnectionオブジェクトのcreateStatementメソッドを利用してStatementオブジェクトを生成
 			smt = con.createStatement();
 
-			String sql = "INSERT INTO productinfo VALUES(" + product.getProduct_id() + "," + product.getUser_id() + ",'"
-					+ product.getName() + "'," +
-					product.price() + "," + product.getQuantity() + ",'" + product.getDescription() + "',"
-					+ product.getSell_date();
-
-			int rowsCount = smt.executeUpdate(sql);
+			// SQLをDBへ発行
+			smt.executeUpdate(sql);
 
 		} catch (Exception e) {
 			throw new IllegalStateException(e);
@@ -173,27 +175,23 @@ public class ProductDAO {
 				}
 			}
 		}
-		return count;
 	}
 
 	/**
 	 * 商品情報を削除するメソッド
 	 */
-	public int delete(String product_id) {
+	public void delete(String productid) {
 
 		Connection con = null;
 		Statement smt = null;
-
-		int count = 0;
 
 		try {
 
 			con = getConnection();
 			smt = con.createStatement();
 
-			String sql = "DELETE FROM productinfo WHERE product_id =" + product_id;
-
-			int rowsCount = smt.executeUpdate(sql);
+			String sql = "DELETE FROM productinfo WHERE product_id =" + productid;
+			smt.executeUpdate(sql);
 
 		} catch (Exception e) {
 			throw new IllegalStateException(e);
@@ -211,7 +209,6 @@ public class ProductDAO {
 				}
 			}
 		}
-		return count;
 	}
 
 }

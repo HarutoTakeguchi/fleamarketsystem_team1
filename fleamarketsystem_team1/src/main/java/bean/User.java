@@ -1,9 +1,11 @@
+//作成者：石井
+
 package bean;
 
 public class User {
 	//① フィールド変数に定義
 
-	private int user_id; //ユーザーID
+	private String user_id; //ユーザーID
 	private String password; //パスワード
 	private String authority; //権限
 	private String user_name; //ユーザーネーム
@@ -11,12 +13,13 @@ public class User {
 	private String address; //住所
 	private int age; //年齢
 	private String email; //メールアドレス
+	private String dealing;
 
 	//② コンストラクタ定義
 
 	public User(){
 
-	this.user_id = 0 ; //ユーザーID初期化
+	this.user_id = null ; //ユーザーID初期化
 	this.password = null ; //パスワード初期化
 	this.authority = null ; //権限初期化
 	this.user_name = null ; //ユーザーネーム初期化
@@ -24,18 +27,18 @@ public class User {
 	this.address = null ; //住所初期化
 	this.age = 0 ; //年齢初期化
 	this.email = null; //メールアドレス初期化
-
+	this.dealing = null;
 	}
 
 	//③④ 各フィールド変数のGet・setメソッド定義
 
 	//ユーザーID
 
-	public int getUserid() {
+	public String getUserid() {
 		return user_id;
 	}
 
-	public void setUserid(int user_id) {
+	public void setUserid(String user_id) {
 		this.user_id = user_id;
 	}
 
@@ -108,4 +111,12 @@ public class User {
 	public void setEmail(String email) {
 		this.email = email;
 	}
+	
+	public String getDealing() {
+		return dealing;
+	}
+	public void setDealing(String dealing) {
+		this.dealing = dealing;
+	}
+	
 }

@@ -1,3 +1,5 @@
+//作成者：竹口
+
 package servlet;
 
 import java.io.IOException;

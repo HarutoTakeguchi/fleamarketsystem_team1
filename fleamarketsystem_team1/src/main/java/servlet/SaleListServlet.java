@@ -1,8 +1,12 @@
+//作成者：畑
+
 package servlet;
 
 import java.io.IOException;
 import java.util.ArrayList;
 
+import bean.Product;
+import dao.ProductDAO;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;

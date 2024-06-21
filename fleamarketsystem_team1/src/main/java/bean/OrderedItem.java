@@ -1,6 +1,8 @@
+//作成者：小澤
+
 package bean;
 
-public class OrderItem {
+public class OrderedItem {
 	
 	private String userid;//購入したユーザーのID
 	
@@ -17,7 +19,7 @@ public class OrderItem {
 	private String shipment_status;//配送状況
 	//コンストラクタ
 	
-	public OrderItem() {
+	public OrderedItem() {
 		this.userid = null;
 		this.order_no = null;
 		this.product_id =null;
@@ -33,45 +35,45 @@ public class OrderItem {
 	public void setUserid(String userid) {
 		this.userid = userid;
 	}
-	public String getorder_no() {
+	public String getOrder_no() {
 		return order_no;
 	}
-	public void setorder_no(String order_no) {
+	public void setOrder_no(String order_no) {
 		this.order_no = order_no;
 	}
 
-	public String getsold_date() {
+	public String getSold_date() {
 		return sold_date;
 	}
-	public void setsold_date(String sold_date) {
+	public void setSold_date(String sold_date) {
 		this.sold_date = sold_date;
 	}
 
-	public String getdeposit_status() {
+	public String getDeposit_status() {
 		return deposit_status;
 	}
-	public void setdeposit_status(String deposit_status) {
+	public void setDeposit_status(String deposit_status) {
 		this.deposit_status = deposit_status;
 	}
 	
-	public String getproduct_id() {
+	public String getProduct_id() {
 		return product_id;
 	}
-	public void setproduct_id(String product_id) {
+	public void setProduct_id(String product_id) {
 		this.product_id = product_id;
 	}
 	
-	public String getdealing() {
+	public String getDealing() {
 		return dealing;
 	}
-	public void setdealing(String dealing) {
+	public void setDealing(String dealing) {
 		this.dealing = dealing;
 	}
 	
-	public String getshipment_status() {
+	public String getShipment_status() {
 		return shipment_status;
 	}
-	public void setshipment_status(String shipment_status) {
+	public void setShipment_status(String shipment_status) {
 		this.shipment_status = shipment_status;
 	}
 

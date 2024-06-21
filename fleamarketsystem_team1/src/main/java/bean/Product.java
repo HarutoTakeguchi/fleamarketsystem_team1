@@ -1,10 +1,11 @@
+//作成者：石井
+
 package bean;
 
 public class Product {
 	//① フィールド変数に定義
 
 	private int productid; //商品ID
-	private int userid; //ユーザーID
 	private String name; //商品名
 	private int price; //商品価格
 	private int quantity; //商品個数
@@ -16,7 +17,6 @@ public class Product {
 	public Product() {
 
 		this.productid = 0; //商品ID初期化
-		this.userid = 0; //ユーザーID初期化
 		this.name = null; //商品名初期化
 		this.price = 0; //商品価格初期化
 		this.quantity = 0; //商品個数初期化
@@ -33,14 +33,6 @@ public class Product {
 
 	public void setProductid(int productid) {
 		this.productid = productid;
-	}
-
-	public int getUserid() {
-		return userid;
-	}
-
-	public void setUserid(int userid) {
-		this.userid = userid;
 	}
 
 	public String getName() {

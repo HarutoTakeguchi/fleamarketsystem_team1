@@ -1,3 +1,5 @@
+//作成者：竹口
+
 package dao;
 
 import java.sql.Connection;
@@ -61,7 +63,7 @@ public class UserDAO {
 
 			// 結果セットからユーザーデータを取り出し、Userオブジェクトに格納
 			while (rs.next()) {
-				user.setUserid(rs.getInt("user_id"));
+				user.setUserid(rs.getString("user_id"));
 				user.setPassword(rs.getString("password"));
 				user.setAuthority(rs.getString("authority"));
 				user.setUsername(rs.getString("user_name"));
@@ -102,7 +104,10 @@ public class UserDAO {
 		ArrayList<User> userList = new ArrayList<User>();
 
 		// SQL文を文字列として定義。権限1（管理者）を除いたユーザーを検索するSQL文
-		String sql = "SELECT * FROM user_info ORDER BY user_id WHERE NOT (authority = '1')";
+		String sql = 
+			"SELECT A.user_id, A.user_name, A.name, A.age, A.address, A.email,  A.password, B.dealing "
+			+ "From user_info A LEFT JOIN order_info B ON A.user_id = B.user_id "
+			+ "WHERE authority = 2 ORDER BY user_id";
 
 		try {
 			// getConnection()メソッドを利用して、Connectionオブジェクトを生成
@@ -116,14 +121,14 @@ public class UserDAO {
 			// 結果セットからユーザーデータを検索件数分全て取り出し、AllayListオブジェクトにUserオブジェクトとして格納
 			while (rs.next()) {
 				User user = new User();
-				user.setUserid(rs.getInt("user_id"));
+				user.setUserid(rs.getString("user_id"));
 				user.setPassword(rs.getString("password"));
-				user.setAuthority(rs.getString("authority"));
 				user.setUsername(rs.getString("user_name"));
 				user.setName(rs.getString("name"));
 				user.setAddress(rs.getString("address"));
 				user.setAge(rs.getInt("age"));
 				user.setEmail(rs.getString("email"));
+				user.setDealing(rs.getString("dealing"));
 				userList.add(user);
 			}
 
@@ -187,7 +192,7 @@ public class UserDAO {
 	}
 
 	// データベースから指定されたユーザーデータを検索しUserオブジェクトに格納するインスタンスメソッド
-	public User selectByUserid(int userid) {
+	public User selectByUserid(String userid) {
 
 		// 変数宣言
 		Connection con = null;
@@ -210,7 +215,7 @@ public class UserDAO {
 
 			// 結果セットから書籍データを取り出し、Userオブジェクトに格納
 			if (rs.next()) {
-				user.setUserid(rs.getInt("user_id"));
+				user.setUserid(rs.getString("user_id"));
 				user.setPassword(rs.getString("password"));
 				user.setAuthority(rs.getString("authority"));
 				user.setUsername(rs.getString("user_name"));
