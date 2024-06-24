@@ -21,6 +21,6 @@
 	}
 %>
 	<ul>
-		<li>名前: <%=user.getUser_name() %></li>
+		<li>名前: <%=user.getUsername() %></li>
 		<li>権限: <%=authority %></li>
 	</ul>

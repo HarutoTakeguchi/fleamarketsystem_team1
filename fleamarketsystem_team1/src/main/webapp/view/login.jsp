@@ -31,7 +31,7 @@
 				</table>
 				<input type="submit" value="ログイン">
 			</form>
-			<a href="<%=request.getContextPath()%>/view/menbe_registration.jsp">
+			<a href="<%=request.getContextPath()%>/view/memberRegistration.jsp">
 				<input type="submit" value="新規登録はこちらから">
 			</a>
 		</div>

@@ -17,7 +17,7 @@ public class ProductDAO {
 	private static String RDB_DRIVE = "org.mariadb.jdbc.Driver";
 
 	//接続するMySQLデータベース
-	private static String URL = "jdbc:mariadb://localhost/mybookdb";
+	private static String URL = "jdbc:mariadb://localhost/marketdb";
 
 	//データベースのユーザー名
 	private static String USER = "root";
@@ -66,6 +66,7 @@ public class ProductDAO {
 				product.setQuantity(rs.getInt("quantity"));
 				product.setDescription(rs.getString("description"));
 				product.setSelldate(rs.getString("selldate"));
+				product.setCategory(rs.getString("category"));
 				list.add(product);
 			}
 
@@ -144,11 +145,12 @@ public class ProductDAO {
 		Statement smt = null;
 
 		// SQL文を文字列として定義
-		String sql = "INSERT INTO productinfo VALUES(" + product.getProductid() + ","
-				+ product.getName() + "',"
-				+ product.getPrice() + "," + product.getQuantity() + ",'"
-				+ product.getDescription() + "'," + product.getSelldate();
-
+		String sql = "INSERT INTO product_info VALUES(NULL," + product.getUserid()
+				+ ",'" + product.getName() + "','"
+				+ product.getPrice() + "','" + product.getQuantity() + "','"
+				+ product.getDescription() + "','" + product.getSelldate() + "','"
+				+ product.getCategory() + "')";
+		
 		try {
 
 			// getConnection()メソッドを利用して、Connectionオブジェクトを生成

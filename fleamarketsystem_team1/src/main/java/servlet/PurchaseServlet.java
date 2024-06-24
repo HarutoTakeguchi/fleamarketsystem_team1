@@ -6,6 +6,7 @@ import java.util.ArrayList;
 
 import bean.Product;
 import bean.User;
+import dao.OrderDAO;
 import dao.ProductDAO;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -13,7 +14,6 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
-//import util.SendMail;
 import util.SendMail;
 
 @WebServlet("/Purchase")
@@ -39,7 +39,7 @@ public class PurchaseServlet extends HttpServlet{
 			
 			//購入処理。一件ずつ購入するので受け取ったproductidをもとに処理を進める。
 			ProductDAO productDao = new ProductDAO();
-			OrderDAO orederDao= new OrderDAO();
+			OrderDAO orderDao= new OrderDAO();
 			ArrayList<Product> product_list = new ArrayList<Product>();
 			Product product = productDao.selectByProduct(productid);
 			product_list.add(product);

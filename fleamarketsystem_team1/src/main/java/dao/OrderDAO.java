@@ -74,14 +74,14 @@ public class OrderDAO {
 			String sql  = "SELECT order_no,user_id,product_id,sold_date,dealing,deposit,shipment FROM order_info WHERE user_id = '" + userid + "'";
 			//SQL文発行
 			ResultSet rs  = smt.executeQuery(sql);
-
+			//	(追記:小澤)orderにはほとんどデータがありません。
 			while(rs.next()) {
-				order.setOrder_no(rs.getInt("order_no"));
+				order.setOrderno(rs.getInt("orderno"));
 				order.setUserid(rs.getString("userid"));
 				order.setDealing(rs.getString("dealing"));
 				order.setSolddate(rs.getString("solddate"));
 				order.setDeposit(rs.getString("deposit"));
-				order.setSolddate(rs.getString("sold_date"));
+				order.setSolddate(rs.getString("solddate"));
 				order.setShipment(rs.getString("shipment"));
 			}
 

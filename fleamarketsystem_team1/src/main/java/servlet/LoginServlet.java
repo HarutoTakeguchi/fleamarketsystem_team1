@@ -63,7 +63,7 @@ public class LoginServlet extends HttpServlet {
 					request.getRequestDispatcher("/view/admin_menu.jsp").forward(request, response);
 				} else {
 					// それ以外（２）は一般ユーザー
-					request.getRequestDispatcher("/view/member_menu.jsp").forward(request, response);
+					request.getRequestDispatcher("/view/memberMenu.jsp").forward(request, response);
 				}
 			} else {
 				request.setAttribute("error", error);

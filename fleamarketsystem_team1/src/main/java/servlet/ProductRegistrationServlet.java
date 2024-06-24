@@ -3,14 +3,18 @@
 package servlet;
 
 import java.io.IOException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 import bean.Product;
+import bean.User;
 import dao.ProductDAO;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 
 @WebServlet("/productRegistration")
 public class ProductRegistrationServlet extends HttpServlet {
@@ -20,6 +24,13 @@ public class ProductRegistrationServlet extends HttpServlet {
 
 		String error = "";
 		String cmd = "";
+		
+		HttpSession session = request.getSession();
+		User user = (User)session.getAttribute("user");
+		
+		LocalDateTime nowDate = LocalDateTime.now();
+		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+		String sellDate = dtf.format(nowDate);
 
 		try {
 			// ProductDAOクラスのオブジェクトを生成
@@ -29,19 +40,19 @@ public class ProductRegistrationServlet extends HttpServlet {
 			Product product = new Product();
 
 			// 画面からの入力情報を受け取るためのエンコードを設定し、受け取る			
-			String strId = request.getParameter("productid");
+//			String strId = request.getParameter("productid");
 			String name = request.getParameter("name");
 			String strPrice = request.getParameter("price");
 			String strQuantity = request.getParameter("quantity");
 			String description = request.getParameter("description");
-			String selldate = request.getParameter("selldate");
+			String category = request.getParameter("category");
 			
 			// ID未入力
-			if (strId.equals("")) {
-				error = "IDが未入力の為、商品登録処理は行えませんでした。";
-				cmd = "list";
-				return;
-			}
+//			if (strId.equals("")) {
+//				error = "IDが未入力の為、商品登録処理は行えませんでした。";
+//				cmd = "list";
+//				return;
+//			}
 
 			// 商品名未入力
 			if (name.equals("")) {
@@ -58,12 +69,12 @@ public class ProductRegistrationServlet extends HttpServlet {
 			}
 
 			// ID重複
-			int productid = Integer.parseInt(strId);
-			if (ProductDaoObj.selectByProduct(productid).getProductid() == productid) {
-				error = "入力IDは既に登録済みの為、商品登録処理は行えませんでした。";
-				cmd = "list";
-				return;
-			}
+//			int productid = Integer.parseInt(strId);
+//			if (ProductDaoObj.selectByProduct(productid).getProductid() == productid) {
+//				error = "入力IDは既に登録済みの為、商品登録処理は行えませんでした。";
+//				cmd = "list";
+//				return;
+//			}
 
 			// 価格の値が不正の場合
 			int intPrice;
@@ -78,19 +89,22 @@ public class ProductRegistrationServlet extends HttpServlet {
 			int quantity = Integer.parseInt(strQuantity);
 
 			// 受け取とった入力情報をProductオブジェクトに格納
-			product.setProductid(productid);
+//			product.setProductid(productid);
+
+			product.setUserid(user.getUserid());
 			product.setName(name);
 			product.setPrice(intPrice);
 			product.setQuantity(quantity);
 			product.setDescription(description);
-			product.setSelldate(selldate);
+			product.setSelldate(sellDate);
+			product.setCategory(category);
 
 			// ProductDAOクラスに定義したinsert()メソッドを利用して、Productオブジェクトに格納された書籍データをデータベースに登録する
 			ProductDaoObj.insert(product);
 
-			// ListServletへフォワードする。
+			// ProductListServletへ遷移する。
 			request.setAttribute("insertProduct", product);
-			request.getRequestDispatcher("/list").forward(request, response);
+			request.getRequestDispatcher("/productList").forward(request, response);
 
 		} catch (IllegalStateException e) {
 			error = "DB接続エラーの為、書籍登録処理は行えませんでした。";

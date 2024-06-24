@@ -13,7 +13,7 @@ public class User {
 	private String address; //住所
 	private int age; //年齢
 	private String email; //メールアドレス
-	private String dealing;
+	private String dealing; // 取引状況
 
 	//② コンストラクタ定義
 

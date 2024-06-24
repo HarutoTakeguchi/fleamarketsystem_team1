@@ -29,8 +29,6 @@ public class MemberRegistrationServlet {
 			//各パラメータの取得
 			String userid = request.getParameter("user_id"); //ユーザーID取得
 			String StrAge = request.getParameter("age");	//年齢取得
-			
-			
 			String password = request.getParameter("password");//パスワード取得
 			String authority = request.getParameter("authority"); //権限取得
 			String user_name = request.getParameter("user_name"); //ユーザーネーム取得

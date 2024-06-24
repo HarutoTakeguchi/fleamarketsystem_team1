@@ -28,13 +28,9 @@
 			%>
 			<a href="view/menu.jsp">メニューへ戻る</a>
 			<%
-			}else if(cmd.equals("login")){
-			%>
-			<a href="<%=request.getContextPath()%>/login">ログイン画面へ</a>
-			<%
 			}else{
 			%>
-			<a href="<%=request.getContextPath()%>/login">ログイン画面へ</a>
+			<a href="<%=request.getContextPath()%>/view/login.jsp">ログイン画面へ</a>
 			<%
 			}
 			%>

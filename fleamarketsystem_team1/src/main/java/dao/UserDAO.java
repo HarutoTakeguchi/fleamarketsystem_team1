@@ -39,7 +39,7 @@ public class UserDAO {
 	}
 
 	// DBのuserinfoテーブルから指定ユーザーとパスワードの条件に合致する情報を取得するメソッド定義
-	public User selectByUser(String userid, String password) {
+	public User selectByUser(String username, String password) {
 
 		// 変数宣言
 		Connection con = null;
@@ -49,7 +49,7 @@ public class UserDAO {
 		User user = new User();
 
 		// SQL文の設定
-		String sql = "SELECT * FROM user_info WHERE user_id = '" + userid +
+		String sql = "SELECT * FROM user_info WHERE user_name = '" + username +
 				"' AND password = '" + password + "'";
 
 		try {
