@@ -26,11 +26,11 @@ public class DeleteServlet extends HttpServlet {
 			request.setCharacterEncoding("UTF-8");
 			
 			//パラメータの情報を取得する
-			String product_id = request.getParameter("product_id");
+			String productid = request.getParameter("productid");
 			
 			//ProductDAOをインスタンス化して関連メソッドを呼び出す
 			ProductDAO productDaoObj = new ProductDAO();
-			productDaoObj.delete(product_id);
+			productDaoObj.delete(productid);
 			
 		} catch (IllegalStateException e) {
 			error = "DB接続エラーの為、商品削除処理は行えませんでした。";
@@ -40,8 +40,8 @@ public class DeleteServlet extends HttpServlet {
 			cmd = "menu";
 		} finally {
 			if (error.equals("")) {
-				//ListServletへ遷移する
-				request.getRequestDispatcher("/list").forward(request, response);
+				//ProductListServletへ遷移する
+				request.getRequestDispatcher("/productList").forward(request, response);
 			} else {
 				//error.jspへ遷移する
 				request.setAttribute("error", error);

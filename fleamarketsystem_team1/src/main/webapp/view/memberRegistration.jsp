@@ -21,7 +21,7 @@
 				<!-- ナビゲーション  -->
 				<div id="nav">
 					<ul>
-						<li><a href="<%=request.getContextPath()%>/view/menber_menu.jsp">[メニュー]</a></li>
+						<li><a href="<%=request.getContextPath()%>/view/login.jsp">[ログイン画面へ]</a></li>
 					</ul>
 				</div>
 

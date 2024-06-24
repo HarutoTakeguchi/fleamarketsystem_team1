@@ -69,8 +69,9 @@ public class OrderedItemDAO {
 				orderedItem.setUserid(rs.getString("user"));
 				orderedItem.setDeposit_status(rs.getString("deposit"));
 				orderedItem.setName(rs.getString("name"));
-				orderedItem.setPrise(rs.getString("price"));
-				orderedItem.setShipment(rs.getString("shipment"));
+				orderedItem.setPrice(rs.getInt("price"));
+				orderedItem.setShipment_status(rs.getString("shipment"));
+				orderedItem.setQuantity(rs.getInt("quantity"));
 				
 				ordered_list.add(orderedItem);
 			}

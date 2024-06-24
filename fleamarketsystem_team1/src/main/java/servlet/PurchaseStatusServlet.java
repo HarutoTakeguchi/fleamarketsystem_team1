@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 import bean.OrderedItem;
+import dao.OrderedItemDAO;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -15,11 +16,12 @@ import jakarta.servlet.http.HttpServletResponse;
 public class PurchaseStatusServlet extends HttpServlet{
 	public void doget(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException,IOException{
+		
 		String error= "";
 		String cmd = "";
 		try{
 		
-		OrederedItemDAO OrederedItemDao = new OrederedItemDAO();
+		OrderedItemDAO OrederedItemDao = new OrderedItemDAO();
 		
 		ArrayList<OrderedItem> dealingList = OrederedItemDao.selectAll();
 		

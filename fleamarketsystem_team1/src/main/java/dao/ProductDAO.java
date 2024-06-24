@@ -60,12 +60,12 @@ public class ProductDAO {
 
 			while (rs.next()) {
 				Product product = new Product();
-				product.setProductid(rs.getInt("productid"));
+				product.setProductid(rs.getInt("product_id"));
 				product.setName(rs.getString("name"));
 				product.setPrice(rs.getInt("price"));
 				product.setQuantity(rs.getInt("quantity"));
 				product.setDescription(rs.getString("description"));
-				product.setSelldate(rs.getString("selldate"));
+				product.setSelldate(rs.getString("sell_date"));
 				product.setCategory(rs.getString("category"));
 				list.add(product);
 			}
@@ -92,19 +92,24 @@ public class ProductDAO {
 	/**
 	 * 条件から合致する商品情報を取得するメソッド
 	 */
-	public Product selectByProduct(int productid) {
+	public Product selectByProduct(String name) {
 
 		Connection con = null;
 		Statement smt = null;
 
+		//戻り値の設定
 		Product product = new Product();
 
 		try {
 
+			//getConnection()メソッドを利用してConnectionオブジェクトを生成
 			con = getConnection();
+
+			//createStatement()メソッドを利用してStatementoオブジェクトを生成
 			smt = con.createStatement();
 
-			String sql = "SELECT * FROM productinfo WHERE product_id =" + productid;
+			//SQL文を文字列として定義
+			String sql = "SELECT * FROM product_info WHERE product_id =" + product.getProductid();
 
 			ResultSet rs = smt.executeQuery(sql);
 
@@ -150,7 +155,7 @@ public class ProductDAO {
 				+ product.getPrice() + "','" + product.getQuantity() + "','"
 				+ product.getDescription() + "','" + product.getSelldate() + "','"
 				+ product.getCategory() + "')";
-		
+
 		try {
 
 			// getConnection()メソッドを利用して、Connectionオブジェクトを生成
@@ -189,10 +194,16 @@ public class ProductDAO {
 
 		try {
 
+			//getConnection()メソッドを利用してConnectionオブジェクトを生成
 			con = getConnection();
+
+			//createStatement()メソッドを利用してStatementオブジェクトを生成
 			smt = con.createStatement();
 
-			String sql = "DELETE FROM productinfo WHERE product_id =" + productid;
+			//SQLを文字列として定義
+			String sql = "DELETE FROM product_info WHERE product_id = '" + productid + "'";
+
+			//SQL文を発行
 			smt.executeUpdate(sql);
 
 		} catch (Exception e) {

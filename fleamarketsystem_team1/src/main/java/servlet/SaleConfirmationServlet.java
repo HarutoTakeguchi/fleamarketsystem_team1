@@ -6,8 +6,8 @@ package servlet;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import bean.User;
-import dao.OrderedItemDAO;
+import bean.Sale;
+import dao.SaleDAO;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -28,13 +28,14 @@ public class SaleConfirmationServlet extends HttpServlet {
 			request.setCharacterEncoding("UTF-8");
 			
 			//UserDAOをインスタンス化する
-			OrderedItemDAO OrderedItemDaoObj = new OrderedItemDAO();
+			SaleDAO SaleDaoObj = new SaleDAO();
 			
 			//関連メソッドを呼び出す
-			ArrayList<User> userList = OrderedItemDaoObj.selectAll();
+			ArrayList<Sale> SaleList = new ArrayList<Sale>();
+			SaleList = SaleDaoObj.selectBySales();
 			
 			//取得したListをリクエストスコープに"user_list"という名前で格納する
-			request.setAttribute("sale_list", userList);
+			request.setAttribute("sale_list", SaleList);
 			
 		} catch (IllegalStateException e) {
 			error = "DB接続エラーの為、売上確認は表示出来ません。";

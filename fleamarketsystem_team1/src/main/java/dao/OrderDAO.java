@@ -9,6 +9,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 import bean.Order;
+import bean.Product;
 
 public class OrderDAO {
 
@@ -29,7 +30,7 @@ public class OrderDAO {
 	} 
 
 	//引数の購入データを元にDBのorderinfoテーブルに新規登録処理を行うメソッド
-	public void insert(Order order){
+	public void insert(Product product){
 
 		Connection con = null;//DBコネクション
 		Statement smt = null;//SQLステートメント
@@ -40,8 +41,8 @@ public class OrderDAO {
 			smt = con.createStatement();
 
 			//SQL文作成
-			String sql = "INSERT INTO orderinfo VALUES(NULL,'"+ order.getUserid() + "','"+ order.getProductid() + "','"+ order.getQuantity() +"',"
-					+ order.getSolddate() +",CURDATE())";
+			String sql = "INSERT INTO orderinfo VALUES(NULL,'"+ product.getUserid() + "','"+ product.getProductid() + "','"+"',CURDATE()"+"','"+0+"','"
+					+ 0 +"','+ 0)";
 			//SQL文発行
 			int count = smt.executeUpdate(sql);
 

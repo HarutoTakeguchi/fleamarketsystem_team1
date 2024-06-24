@@ -17,14 +17,6 @@ public class OrderedItem {
 	private String deposit_status;//入金状況
 	
 	private String shipment_status;//配送状況
-	
-	private String name;
-	
-	private int price;
-	
-	private int quantity;
-	
-	
 	//コンストラクタ
 	
 	public OrderedItem() {
@@ -35,9 +27,6 @@ public class OrderedItem {
 		this.dealing = null;
 		this.deposit_status = null;
 		this.shipment_status = null;
-		this.name = null;
-		this.price = 0;
-		this.quantity = 0;
 	}
 	
 	public String getUserid() {
@@ -87,24 +76,5 @@ public class OrderedItem {
 	public void setShipment_status(String shipment_status) {
 		this.shipment_status = shipment_status;
 	}
-	public String getName() {
-		return name;
-	}
-	public void setName(String name) {
-		this.name = name;
-	}
-	public int getPrice() {
-		return price;
-	}
-	public void setPrice(int price) {
-		this.price = price;
-	}
-	public int getQuantity() {
-		return quantity;
-	}
-	public void setQuantity(int quantity) {
-		this.quantity = quantity;
-	}
-	
 
 }

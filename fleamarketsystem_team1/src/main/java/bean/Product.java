@@ -6,7 +6,7 @@ public class Product {
 	//① フィールド変数に定義
 
 	private int productid; //商品ID
-	private String userid;
+	private String userid; // ユーザーID
 	private String name; //商品名
 	private int price; //商品価格
 	private int quantity; //商品個数

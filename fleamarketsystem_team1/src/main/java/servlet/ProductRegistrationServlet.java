@@ -25,9 +25,11 @@ public class ProductRegistrationServlet extends HttpServlet {
 		String error = "";
 		String cmd = "";
 		
+		// ログインしているユーザーのセッションを取得
 		HttpSession session = request.getSession();
 		User user = (User)session.getAttribute("user");
 		
+		// 現在の日付を取得
 		LocalDateTime nowDate = LocalDateTime.now();
 		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 		String sellDate = dtf.format(nowDate);
@@ -40,19 +42,11 @@ public class ProductRegistrationServlet extends HttpServlet {
 			Product product = new Product();
 
 			// 画面からの入力情報を受け取るためのエンコードを設定し、受け取る			
-//			String strId = request.getParameter("productid");
 			String name = request.getParameter("name");
 			String strPrice = request.getParameter("price");
 			String strQuantity = request.getParameter("quantity");
 			String description = request.getParameter("description");
 			String category = request.getParameter("category");
-			
-			// ID未入力
-//			if (strId.equals("")) {
-//				error = "IDが未入力の為、商品登録処理は行えませんでした。";
-//				cmd = "list";
-//				return;
-//			}
 
 			// 商品名未入力
 			if (name.equals("")) {
@@ -68,14 +62,6 @@ public class ProductRegistrationServlet extends HttpServlet {
 				return;
 			}
 
-			// ID重複
-//			int productid = Integer.parseInt(strId);
-//			if (ProductDaoObj.selectByProduct(productid).getProductid() == productid) {
-//				error = "入力IDは既に登録済みの為、商品登録処理は行えませんでした。";
-//				cmd = "list";
-//				return;
-//			}
-
 			// 価格の値が不正の場合
 			int intPrice;
 			try {
@@ -89,8 +75,6 @@ public class ProductRegistrationServlet extends HttpServlet {
 			int quantity = Integer.parseInt(strQuantity);
 
 			// 受け取とった入力情報をProductオブジェクトに格納
-//			product.setProductid(productid);
-
 			product.setUserid(user.getUserid());
 			product.setName(name);
 			product.setPrice(intPrice);

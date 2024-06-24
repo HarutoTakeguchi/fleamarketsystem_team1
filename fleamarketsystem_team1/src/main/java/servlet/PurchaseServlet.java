@@ -14,6 +14,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+//import util.SendMail;
 import util.SendMail;
 
 @WebServlet("/Purchase")
@@ -41,19 +42,20 @@ public class PurchaseServlet extends HttpServlet{
 			ProductDAO productDao = new ProductDAO();
 			OrderDAO orderDao= new OrderDAO();
 			ArrayList<Product> product_list = new ArrayList<Product>();
+			
 			Product product = productDao.selectByProduct(productid);
 			product_list.add(product);
-			orderDao.insert(order);
+			orderDao.insert(product);
 			
 			request.setAttribute("product_list", product_list);
 			
 			//購入の確認メール送信
 			SendMail sendMail = new SendMail();
-			sendMail.setFromInfo("", "フリーマーケットシステム");//メールアドレスは何を使うのでしょうか。左の""には送信元のメアド
+			sendMail.setFromInfo("system.project.team43@kanda-it-school-system.com", "フリーマーケットシステム");
 			sendMail.setRecipients(user.getEmail());
-			sendMail.setSubject("");//表示する文を記入
+			sendMail.setSubject("商品のご購入ありがとうございます。");//表示する文を記入
 			sendMail.setText(user.getName()
-					+ "様"+"");//上と同様記入
+					+ "様\\n\\n本のご購入ありがとうございます。n以下内容でご注文を受け付けましたので、ご連絡致します。\n");
 			sendMail.setText(product.getPrice()+ "円\n\nまたのご利用よろしくお願いします。");
 			sendMail.forwardMail();
 			
