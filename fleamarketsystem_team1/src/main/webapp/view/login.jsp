@@ -22,7 +22,7 @@
 				<table class="login-table">
 					<tr>
 						<th>ユーザー</th>
-						<td><input type="text" name="id"></td>
+						<td><input type="text" name="username"></td>
 					</tr>
 					<tr>
 						<th>パスワード</th>
