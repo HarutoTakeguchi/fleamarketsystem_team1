@@ -24,13 +24,13 @@ public class LoginServlet extends HttpServlet {
 		User user = new User();
 
 		try {
-			String userid = (String) request.getParameter("id");
+			String username = (String) request.getParameter("username");
 			String password = (String) request.getParameter("password");
 
 			//UserDAOをインスタンス化し、ユーザー情報の検索を行う。
 
 			UserDAO userDao = new UserDAO();
-			user = userDao.selectByUser(userid, password);
+			user = userDao.selectByUser(username, password);
 
 			//ユーザー情報のチェック
 			if (user.getUserid() == null) {
@@ -63,7 +63,7 @@ public class LoginServlet extends HttpServlet {
 					request.getRequestDispatcher("/view/admin_menu.jsp").forward(request, response);
 				} else {
 					// それ以外（２）は一般ユーザー
-					request.getRequestDispatcher("/view/menbe_menu.jsp").forward(request, response);
+					request.getRequestDispatcher("/view/member_menu.jsp").forward(request, response);
 				}
 			} else {
 				request.setAttribute("error", error);
