@@ -1,9 +1,9 @@
 <!-- 石井　作成 -->
 <%@page contentType="text/html; charset=UTF-8"%>
-<%@page import="java.util.ArrayList,bean.Sale_statue"%>
+<%@page import="java.util.ArrayList,bean.SaleStatus"%>
 
 <%
-	ArrayList<Sale_status> list = (ArrayList<Sale_status>) request.getAttribute("sale_status_list");
+	ArrayList<SaleStatus> list = (ArrayList<SaleStatus>) request.getAttribute("sale_status_list");
 %>
 <html>
 <head>
@@ -25,7 +25,7 @@
 	<table style="margin: auto; width: 850px">
 		<tr>
 			<td style="text-align: center; width: 80px">[<a
-				href="<%=request.getContextPath()%>/view/menu.jsp">メニュー</a>]
+				href="<%=request.getContextPath()%>/view/memberMenu.jsp">メニュー</a>]
 			</td>
 
 			<td style="text-align: center; width: 508px; font-size: 24px;">出品状況画面</td>
@@ -47,38 +47,32 @@
 					<th style="background-color: #6666ff; width: 200px">配送確定</th>
 				</tr>
 				<%
-				ArrayList<Sale_statue> sale_statue_list = (ArrayList<Sale_statue>) request.getAttribute("sale_statue_list");
-				if (sale_statue_list != null) {
-					for (int i = 0; i < sale_statue_list.size(); i++) {
-						Sale_statue sale_statueObj = (Sale_statue)sale_statue_list.get(i);
+				if (list != null) {
+					for (SaleStatus salestatus : list) {
 				%>
 				<tr>
 					<!-- Order.java(Bean) -->
 					<!-- 商品名、発送状況、商品情報、配送確定を出力する -->
 					<!-- 商品名と商品情報はproduct(Bean)に、発送状況と配送確定がOrderedItem(Bean)にあるのが問題 -->
-					<td style="text-align: center; width: 200px"><%=sale_statueObj.getProduct_id()%></td>
-					<td style="text-align: center; width: 200px"><%=sale_statueObj.getName()%></td>
+					<td style="text-align: center; width: 200px"><%=salestatus.getProductid()%></td>
+					<td style="text-align: center; width: 200px"><%=salestatus.getName()%></td>
 					<!-- 商品名 -->
-					<%= sale_statueObj.getShipment_status()%>
-					
-					<%
-					if(shipment_status.eqauls("null")){
-					%>
+					<%if(salestatus.getShipmentStatus().equals("null")){%>
 
 					<td style="text-align: center; width: 200px">×</td>
 					<!-- 発送状況 -->
 
 					<%
-						}
 					}else{
 					%>
 					<td style="text-align: center; width: 200px">〇</td>
 					<%
 					}
+					}}
 					%>
 
 					<td style="text-align: center; width: 200px">[<a
-						href="<%=request.getContextPath()%>/productInformation">商品情報</a>]
+						href="<%=request.getContextPath()%>/productInfo">商品情報</a>]
 					</td>
 					<!-- 商品情報 -->
 
@@ -95,7 +89,7 @@
 			</table>
 		</form>
 
-		<form action=view/menu.jsp " method="get">
+		<form action=/view/memberMenu.jsp method="get">
 			<table style="margin: auto; padding: 100px;">
 				<tr style="margin: auto">
 					<th><input type="submit" name="menu" value="メニューに戻る"></th>

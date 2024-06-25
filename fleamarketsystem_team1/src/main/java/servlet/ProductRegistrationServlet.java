@@ -51,14 +51,21 @@ public class ProductRegistrationServlet extends HttpServlet {
 			// 商品名未入力
 			if (name.equals("")) {
 				error = "商品名が未入力の為、商品登録処理は行えませんでした。";
-				cmd = "list";
+				cmd = "isert";
 				return;
 			}
 
 			// 価格未入力
 			if (strPrice.equals("")) {
 				error = "価格が未入力の為、商品登録処理は行えませんでした。";
-				cmd = "list";
+				cmd = "insert";
+				return;
+			}
+			
+			// 個数未入力
+			if(strQuantity.equals("")) {
+				error="個数が未入力の為、商品登録処理は行えませんでした。";
+				cmd="insert";
 				return;
 			}
 
@@ -68,7 +75,7 @@ public class ProductRegistrationServlet extends HttpServlet {
 				intPrice = Integer.parseInt(strPrice);
 			} catch (NumberFormatException e) {
 				error = "価格の値が不正の為、商品登録処理は行えませんでした。";
-				cmd = "list";
+				cmd = "insert";
 				return;
 			}
 			

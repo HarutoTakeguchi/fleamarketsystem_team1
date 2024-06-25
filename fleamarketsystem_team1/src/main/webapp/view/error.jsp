@@ -20,9 +20,9 @@
 			<p>●●エラー●●</p>
 			<%=error%><br>
 			<%
-			if(cmd.equals("list")){
+			if(cmd.equals("member_registration.jsp")){
 			%>
-			<a href="<%=request.getContextPath()%>/list">一覧表示に戻る</a>
+			<a href="view/member_registration.jsp">登録画面に戻る</a>
 			<%
 			}else if(cmd.equals("menu.jsp")){
 			%>

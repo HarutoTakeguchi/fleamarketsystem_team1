@@ -8,6 +8,11 @@
 <link rel="stylesheet"
 	href="<%=request.getContextPath()%>/css/style.css">
 </head>
+
+<%
+String error = (String) request.getAttribute("error");
+%>
+
 <body>
 	<!-- ブラウザ全体 -->
 	<div id="wrap">
@@ -20,6 +25,11 @@
 			<!-- フォーム送信でLoginServletへ遷移 -->
 			<form action="<%=request.getContextPath()%>/login" method="post">
 				<table class="login-table">
+				<%
+				if(error != null){
+				%>
+				<%=error%>
+				<%} %>
 					<tr>
 						<th>ユーザー</th>
 						<td><input type="text" name="username"></td>

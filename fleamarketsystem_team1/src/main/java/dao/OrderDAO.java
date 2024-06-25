@@ -42,7 +42,7 @@ public class OrderDAO {
 			String sql = "INSERT INTO orderinfo VALUES(NULL,'"+ product.getUserid() + "','"+ product.getProductid() + "','"+"',CURDATE()"+"','"+0+"','"
 					+ 0 +"','+ 0)";
 			//SQL文発行
-			int count = smt.executeUpdate(sql);
+			smt.executeUpdate(sql);
 
 		}catch(Exception e){
 			throw new IllegalStateException(e);

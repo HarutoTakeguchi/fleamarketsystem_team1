@@ -22,7 +22,7 @@ public class SaleStatus {
 	
 	//商品ID
 	
-	public int getProduct_id() {
+	public int getProductid() {
 		return product_id;
 	}
 
@@ -42,10 +42,10 @@ public class SaleStatus {
 	
 	//配送状況
 	
-	public String getShipment_status() {
+	public String getShipmentStatus() {
 		return shipment_status;
 	}
-	public void setShipment_status(String shipment_status) {
+	public void setShipmentStatus(String shipment_status) {
 		this.shipment_status = shipment_status;
 	}
 }

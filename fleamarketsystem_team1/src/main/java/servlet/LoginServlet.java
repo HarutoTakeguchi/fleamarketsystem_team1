@@ -27,14 +27,27 @@ public class LoginServlet extends HttpServlet {
 			String username = (String) request.getParameter("username");
 			String password = (String) request.getParameter("password");
 
+			//username未入力の場合
+			if (username.equals("")) {
+				error = "ユーザーネームが入力されていません。";
+				cmd = "login";
+				return;
+			}
+
+			//password未入力の場合
+			if (password.equals("")) {
+				error = "パスワードが入力されていません。";
+				cmd = "login";
+				return;
+			}
+
 			//UserDAOをインスタンス化し、ユーザー情報の検索を行う。
 
 			UserDAO userDao = new UserDAO();
 			user = userDao.selectByUser(username, password);
 
-			//ユーザー情報のチェック
+			//ユーザー情報がない場合
 			if (user.getUserid() == null) {
-
 				error = "入力データが間違っています。";
 				cmd = "login";
 				return;
