@@ -160,10 +160,10 @@ public class UserDAO {
 		Statement smt = null;
 
 		// SQL文を文字列として定義
-		String sql = "INSERT INTO user_info VALUES('"
-				+ user.getUserid() + "','" + user.getPassword() + "'," + user.getUsername()
-				+ "'," + user.getName() + "'," + user.getAddress() + "', " + user.getAge()
-				+ "'," + user.getEmail() + ")";
+		String sql = "INSERT INTO user_info VALUES(NULL,'"
+				+ user.getPassword() + "',2,'" + user.getUsername()
+				+ "','" + user.getName() + "','" + user.getAddress() + "','" + user.getAge()
+				+ "','" + user.getEmail() + "')";
 
 		try {
 			// getConnection()メソッドを利用して、Connectionオブジェクトを生成

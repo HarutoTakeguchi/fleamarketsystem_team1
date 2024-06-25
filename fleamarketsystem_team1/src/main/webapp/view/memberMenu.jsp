@@ -1,3 +1,5 @@
+<!-- 作成：畑 -->
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -69,7 +71,7 @@
 
 		<tr>
 			<td style="font-size: 24px"><a
-				href="<%=request.getContextPath()%>//saleStatus">【出品状況】</a></td>
+				href="<%=request.getContextPath()%>/saleStatus">【出品状況】</a></td>
 		<tr>
 			<td style="text-align: center; width: 200px">&nbsp;</td>
 		</tr>

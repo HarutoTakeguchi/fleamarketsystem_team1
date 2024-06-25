@@ -92,7 +92,7 @@ public class ProductDAO {
 	/**
 	 * 条件から合致する商品情報を取得するメソッド
 	 */
-	public Product selectByProduct(String name) {
+	public Product selectByProduct(String productId) {
 
 		Connection con = null;
 		Statement smt = null;
@@ -109,17 +109,19 @@ public class ProductDAO {
 			smt = con.createStatement();
 
 			//SQL文を文字列として定義
-			String sql = "SELECT * FROM product_info WHERE product_id =" + product.getProductid();
+			String sql = "SELECT * FROM product_info WHERE product_id ='" + productId + "'";
 
 			ResultSet rs = smt.executeQuery(sql);
 
-			while (rs.next()) {
-				product.setProductid(rs.getInt("productid"));
+			if (rs.next()) {
+				product.setProductid(rs.getInt("product_id"));
+				product.setUserid(rs.getString("user_id"));
 				product.setName(rs.getString("name"));
 				product.setPrice(rs.getInt("price"));
 				product.setQuantity(rs.getInt("quantity"));
 				product.setDescription(rs.getString("description"));
-				product.setSelldate(rs.getString("selldate"));
+				product.setSelldate(rs.getString("sell_date"));
+				product.setCategory(rs.getString("category"));
 			}
 
 		} catch (Exception e) {

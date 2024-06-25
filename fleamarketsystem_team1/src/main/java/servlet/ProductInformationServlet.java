@@ -30,14 +30,14 @@ public class ProductInformationServlet extends HttpServlet {
 			request.setCharacterEncoding("UTF-8");
 			
 			//パラメータを取得する
-			String name = request.getParameter("name");
+			String productId = request.getParameter("productId");
 			cmd = request.getParameter("cmd");
 			
 			//ProductDAOをインスタンス化する
 			ProductDAO productdao= new ProductDAO();
 			
 			//関連メソッドを呼び出して戻り値としてProductオブジェクトを取得する
-			Product product = productdao.selectByProduct(name);
+			Product product = productdao.selectByProduct(productId);
 
 			// 詳細情報のエラーチェック
 			if (product.getName() == null) {
@@ -59,7 +59,7 @@ public class ProductInformationServlet extends HttpServlet {
 			// エラーの有無でフォワード先を呼び分ける
 			if (error.equals("")) {
 				//エラーが無い場合はproduct_purchase.jspにフォワードする
-				request.getRequestDispatcher("/view/product_purchase.jsp").forward(request, response);
+				request.getRequestDispatcher("/view/goods_information.jsp").forward(request, response);
 			} else {
 				// エラーが有る場合はerror.jspにフォワードする
 				request.setAttribute("error", error);

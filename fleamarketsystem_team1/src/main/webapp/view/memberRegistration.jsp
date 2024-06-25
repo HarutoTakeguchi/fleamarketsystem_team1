@@ -39,7 +39,7 @@
 				<table class="input-table" align="center">
 					<tr>
 						<th>ユーザー名</th>
-						<td><input type="text" name="user_id"></td>
+						<td><input type="text" name="user_name"></td>
 					</tr>
 					<tr>
 						<th>パスワード</th>

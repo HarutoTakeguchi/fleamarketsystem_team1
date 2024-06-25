@@ -1,9 +1,9 @@
 <%--作成者小澤 --%>
 <%@page contentType="text/html; charset=UTF-8"%>
-<%@page import="java.util.ArrayList,bean.Product"%>
+<%@page import="bean.Product, util.MyFormat"%>
 <%
-ArrayList<Product> productid_list = (ArrayList<Product>)request.getAttribute("product_list") 
-Product product = new Product();
+Product product = (Product)request.getAttribute("product");
+MyFormat format = new MyFormat();
 %>
 
 <!DOCTYPE html>
@@ -29,7 +29,7 @@ Product product = new Product();
 	<table style="margin: auto; width: 850px">
 		<tr>
 			<td style="text-align: center; width: 80px">[<a
-				href="<%=request.getContextPath()%>/view/menu.jsp">メニュー</a>]
+				href="<%=request.getContextPath()%>/view/memberMenu.jsp">メニュー</a>]
 			</td>
 
 			<td style="width: 200px">&nbsp;</td>
@@ -69,23 +69,23 @@ Product product = new Product();
 		</tr>
 		<%-- データ入力 --%>
 		<tr>
-			<td style="text-align: center; width: 120px"><%=product.getProduct_name%></td>
+			<td style="text-align: center; width: 120px"><%=product.getName()%></td>
 		</tr>
 
 		<tr>
-			<td style="text-align: center; width: 120px"><%=product.getPrice%></td>
+			<td style="text-align: center; width: 120px"><%=product.getPrice()%></td>
 		</tr>
 
 		<tr>
-			<td style="text-align: center; width: 120px"><%=product.getProduct_kind%></td>
+			<td style="text-align: center; width: 120px"><%=product.getCategory()%></td>
 		</tr>
 
 		<tr>
-			<td style="text-align: center; width: 120px"><%=product.getQuantity%></td>
+			<td style="text-align: center; width: 120px"><%=product.getQuantity()%></td>
 		</tr>
 
 		<tr>
-			<td style="text-align: center; width: 120px"><%=product.getProduct_description%></td>
+			<td style="text-align: center; width: 120px"><%=product.getDescription()%></td>
 		</tr>
 
 
@@ -98,7 +98,7 @@ Product product = new Product();
 
 			<tr style="margin: auto">
 				<input type="hidden" name="product_id"
-					value="<%=product.getProduc_id%>">
+					value="<%=product.getProductid()%>">
 				<th><input type="submit" name="buyConfirm" value="購入"></th>
 			</tr>
 

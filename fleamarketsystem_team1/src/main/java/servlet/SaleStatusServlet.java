@@ -5,15 +5,15 @@ package servlet;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import bean.Product;
-import dao.ProductDAO;
+import bean.SaleStatus;
+import dao.SaleStatusDAO;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-@WebServlet("/saleStatue")
+@WebServlet("/saleStatus")
 public class SaleStatusServlet extends HttpServlet {
 
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -26,14 +26,14 @@ public class SaleStatusServlet extends HttpServlet {
 			// 入力データの文字コードの指定
 			request.setCharacterEncoding("UTF-8");
 			
-			// ① BookDAOをインスタンス化する
-			ProductDAO ProductDaoObj = new ProductDAO();
+			// ① Sale_statusDAOをインスタンス化する
+			SaleStatusDAO saleStatusDaoObj = new SaleStatusDAO();
 
-			// ②関連メソッドを呼び出し、戻り値としてBookオブジェクトのリストを取得する
-			ArrayList<Product> product_list = ProductDaoObj.selectAll();
+			// ②関連メソッドを呼び出し、戻り値としてSale_statusオブジェクトのリストを取得する
+			ArrayList<SaleStatus> list = saleStatusDaoObj.selectBySaleStatus();
 
-			// ③②で取得したListをリクエストスコープに"book_list"という名前で格納する
-			request.setAttribute("product_list",product_list);
+			// ③②で取得したListをリクエストスコープに"sale_status_list"という名前で格納する
+			request.setAttribute("sale_status_list",list);
 
 		} catch (IllegalStateException e) {
 			
@@ -45,7 +45,7 @@ public class SaleStatusServlet extends HttpServlet {
 			// ④ エラーの有無でフォワード先を呼び分ける
 			if (error.equals("")) {
 				// エラーが無い場合はlist.jspにフォワード
-				request.getRequestDispatcher("/view/salestatus.jsp").forward(request, response);
+				request.getRequestDispatcher("/view/sale_status.jsp").forward(request, response);
 			} else {
 				// エラーが有る場合はerror.jspにフォワードする
 				request.setAttribute("error", error);

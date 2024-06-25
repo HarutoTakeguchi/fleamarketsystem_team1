@@ -14,8 +14,6 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
-//import util.SendMail;
-import util.SendMail;
 
 @WebServlet("/Purchase")
 public class PurchaseServlet extends HttpServlet{
@@ -49,15 +47,7 @@ public class PurchaseServlet extends HttpServlet{
 			
 			request.setAttribute("product_list", product_list);
 			
-			//購入の確認メール送信
-			SendMail sendMail = new SendMail();
-			sendMail.setFromInfo("system.project.team43@kanda-it-school-system.com", "フリーマーケットシステム");
-			sendMail.setRecipients(user.getEmail());
-			sendMail.setSubject("商品のご購入ありがとうございます。");//表示する文を記入
-			sendMail.setText(user.getName()
-					+ "様\\n\\n本のご購入ありがとうございます。n以下内容でご注文を受け付けましたので、ご連絡致します。\n");
-			sendMail.setText(product.getPrice()+ "円\n\nまたのご利用よろしくお願いします。");
-			sendMail.forwardMail();
+
 			
 		}catch (IllegalStateException e) {
 			error = "DB接続エラーの為、購入は出来ません。";
@@ -67,7 +57,9 @@ public class PurchaseServlet extends HttpServlet{
 			// ⑦ エラーの有無でフォワード先を呼び分ける
 			if (error.equals("")) {
 				// エラーが無い場合はbuyConfirm.jspにフォワードする
-				request.getRequestDispatcher("/view/buy_Email.jsp").forward(
+				cmd = "buy";
+				request.setAttribute("cmd", cmd);
+				request.getRequestDispatcher("/sendmail").forward(
 						request, response);
 			} else {
 				// エラーが有る場合はerror.jspにフォワードする

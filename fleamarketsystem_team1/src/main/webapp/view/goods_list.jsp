@@ -45,6 +45,7 @@ MyFormat format = new MyFormat();
 
 		<table style="margin: auto; width: 800px">
 			<tr>
+			<th style="background-color: #66cdaa; width: 200px">商品ID</th>
 				<th style="background-color: #66cdaa; width: 200px">商品名</th>
 				<th style="background-color: #66cdaa; width: 400px">商品情報</th>
 				<th style="background-color: #66cdaa; width: 200px">削除</th>
@@ -55,8 +56,10 @@ MyFormat format = new MyFormat();
 			%>
 			<tr>
 				<td style="text-align: center; width: 200px">
-				<a href="<%=request.getContextPath()%>/productInfo?name=<%=product.getName()%>cmd=detail">
-				<%=product.getName()%></a></td>
+				<a href="<%=request.getContextPath()%>/productInfo?productId=<%=product.getProductid()%>&cmd=detail">
+				<%=product.getProductid() %></a>
+				<td style="text-align: center; width: 200px">
+				<%=product.getName()%></td>
 				<td style="text-align: center; width: 200px"><%=product.getDescription()%></td>
 				<td style="text-align: center; width: 70px"><a
 					href="<%=request.getContextPath()%>/delete?productid=<%=product.getProductid()%>">削除</a>

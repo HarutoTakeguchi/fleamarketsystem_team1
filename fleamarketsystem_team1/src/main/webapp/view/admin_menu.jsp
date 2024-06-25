@@ -18,7 +18,7 @@
 	<body  style="background-color:#f0f8ff;">
 	
 		<%@include file="/common/header.jsp" %>
-		<%@include file="/common/userinfo.jsp" %>
+		<%@include file="/common/userInfo.jsp" %>
 		
 		<h1 class="title">管理者メニュー</h1>
 		
