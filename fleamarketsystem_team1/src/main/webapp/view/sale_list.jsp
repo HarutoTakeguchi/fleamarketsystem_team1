@@ -1,3 +1,5 @@
+<!-- 作成：後藤 -->
+
 <%@page contentType="text/html; charset=UTF-8"%>
 <%@page import="java.util.ArrayList,bms.Product"%>
 <html lang = "ja">
@@ -11,8 +13,8 @@
 		<table style="margin:auto; width:850px">
 			<tr>
 				<td style="text-align:center; width:80px">[<a href="<%=request.getContextPath() %>/view/admin_menu.jsp">メニュー</a>]</td>
-				<td style="text-align:center; width:80px">[<a href="<%=request.getContextPath() %>/view/userList.jsp">ユーザー一覧</a>]</td>
-				<td style="text-align:center; width:80px">[<a href="<%=request.getContextPath() %>/view/sold_confirm.jsp">売上確認</a>]</td>
+				<td style="text-align:center; width:80px">[<a href="<%=request.getContextPath() %>/userList">ユーザー一覧</a>]</td>
+				<td style="text-align:center; width:80px">[<a href="<%=request.getContextPath() %>/saleConfirmation">売上確認</a>]</td>
 				<td style="text-align:center; width:508px; font-size:24px;">出品一覧</td>
 				<td style="width:80px">&nbsp;</td>
 				<td style="width:80px">&nbsp;</td>

@@ -56,11 +56,11 @@ th, td {
 	<div style="margin-bottom: 250px">
 		<table style="margin: auto; width: 850px">
 			<tr>
-				<td style="text-align: center; width: 100px">[<a href="">管理者メニュー</a>]
+				<td style="text-align: center; width: 100px">[<a href="<%=request.getContextPath()%>/view/admin_menu.jsp">管理者メニュー</a>]
 				</td>
-				<td style="text-align: center; width: 60px">[<a href="">出品一覧</a>]
+				<td style="text-align: center; width: 60px">[<a href="<%=request.getContextPath()%>/saleList">出品一覧</a>]
 				</td>
-				<td style="text-align: center; width: 60px">[<a href="">売上確認</a>]
+				<td style="text-align: center; width: 60px">[<a href="<%=request.getContextPath()%>/saleConfirmation">売上確認</a>]
 				</td>
 				<td style="width: 100px">&nbsp;</td>
 				<td style="width: 200px">&nbsp;</td>

@@ -1,3 +1,5 @@
+<!-- 作成：内山 -->
+
 <%@ page contentType="text/html; charset=UTF-8"%>
 
 <!DOCTYPE html>
@@ -28,16 +30,16 @@
 		
 			<table style="margin:auto; border:0">
 			
-				<tr><td><a href="fleamarketsystem_team1/view/userList.jsp">ユーザー一覧</a></td></tr>
+				<tr><td><a href="<%=request.getContextPath()%>/userList">ユーザー一覧</a></td></tr>
 				<tr><td>&nbsp;</td></tr>
 				
-				<tr><td><a href="fleamarketsystem_team1/view/sale_list.jsp">出品一覧</a></td></tr>
+				<tr><td><a href="<%=request.getContextPath()%>/saleList">出品一覧</a></td></tr>
 				<tr><td>&nbsp;</td></tr>
 				
-				<tr><td><a href="fleamarketsystem_team1/view/sold_cofirm.jsp">売上確認</a></td></tr>
+				<tr><td><a href="<%=request.getContextPath()%>/saleConfirmation">売上確認</a></td></tr>
 				<tr><td>&nbsp;</td></tr>
 				
-				<tr><td><a href="fleamarketsystem_team1/logout">ログアウト</a></td></tr>
+				<tr><td><a href="<%=request.getContextPath()%>/logout">ログアウト</a></td></tr>
 				<tr><td>&nbsp;</td></tr>
 				
 			</table>

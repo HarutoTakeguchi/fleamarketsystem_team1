@@ -51,7 +51,7 @@ public class SaleListServlet extends HttpServlet {
 			// ④ エラーの有無でフォワード先を呼び分ける
 			if (error.equals("")) {
 				// エラーが無い場合はlist.jspにフォワード
-				request.getRequestDispatcher("/view/salelist.jsp").forward(request, response);
+				request.getRequestDispatcher("/view/sale_list.jsp").forward(request, response);
 			} else {
 				// エラーが有る場合はerror.jspにフォワードする
 				request.setAttribute("error", error);
