@@ -14,6 +14,7 @@
 	border: 5px solid #66cdaa;
 	background-color: #66cdaa;
 	padding-top: 20px;
+	text-align:center;
 }
 *{
 	margin:0;
@@ -74,9 +75,7 @@ height: 100px;
 	<%@ include file="/common/userInfo.jsp"%>
 	<p style="text-align: center; font-size: 24px">menu</p>
 
-	<center>
 		<h1 class="title">会員メニュー</h1>
-	</center>
 	<table style="margin: auto;">
 		<br>
 		<br>
@@ -106,7 +105,7 @@ height: 100px;
 
 		<tr>
 			<td style="font-size: 24px"><a
-				href="<%=request.getContextPath()%>/saleStatus">【出品状況】</a></td>
+				href="<%=request.getContextPath()%>/saleStatus?user_id=<%= user.getUserid()%>">【出品状況】</a></td>
 		<tr>
 			<td style="text-align: center; width: 200px">&nbsp;</td>
 		</tr>

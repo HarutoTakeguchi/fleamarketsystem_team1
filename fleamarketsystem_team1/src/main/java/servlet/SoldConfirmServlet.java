@@ -4,16 +4,18 @@
 package servlet;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
-import dao.ProductDAO;
+import bean.Sale;
+import dao.SaleDAO;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-@WebServlet("/delete")
-public class DeleteServlet extends HttpServlet {
+@WebServlet("/soldConfirm")
+public class SoldConfirmServlet extends HttpServlet {
 	public void doGet(HttpServletRequest request ,HttpServletResponse response)
 		throws ServletException ,IOException {
 		
@@ -25,32 +27,26 @@ public class DeleteServlet extends HttpServlet {
 			//文字コードを設定する
 			request.setCharacterEncoding("UTF-8");
 			
-			//パラメータの情報を取得する
-			String productid = request.getParameter("productid");
+			//UserDAOをインスタンス化する
+			SaleDAO SaleDaoObj = new SaleDAO();
 			
-			//ProductDAOをインスタンス化
-			ProductDAO productDaoObj = new ProductDAO();
+			//関連メソッドを呼び出す
+			ArrayList<Sale> SaleList = new ArrayList<Sale>();
+			SaleList = SaleDaoObj.selectBySold();
 			
-			// 削除対象の有無のエラーチェック
-			if (productDaoObj.selectByProduct(productid).getProductid()==0) {
-				error = "削除対象の書籍が存在しない為、書籍削除処理は行えませんでした。";
-				cmd = "list";
-				return;
-			}
-			
-			//メソッド呼び出し
-			productDaoObj.delete(productid);
+			//取得したListをリクエストスコープに"user_list"という名前で格納する
+			request.setAttribute("sale_list", SaleList);
 			
 		} catch (IllegalStateException e) {
-			error = "DB接続エラーの為、商品削除処理は行えませんでした。";
+			error = "DB接続エラーの為、売上確認は表示出来ません。";
 			cmd = "logout";
 		} catch (Exception e) {
 			error = "予期せぬエラーが発生しました。";
 			cmd = "menu";
 		} finally {
 			if (error.equals("")) {
-				//ProductListServletへ遷移する
-				request.getRequestDispatcher("/productList").forward(request, response);
+				//sold_confirm.jspへ遷移する
+				request.getRequestDispatcher("/view/sold_confirm.jsp").forward(request, response);
 			} else {
 				//error.jspへ遷移する
 				request.setAttribute("error", error);
@@ -61,5 +57,4 @@ public class DeleteServlet extends HttpServlet {
 	}
 
 }
-
 

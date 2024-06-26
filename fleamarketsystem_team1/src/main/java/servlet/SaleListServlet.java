@@ -5,19 +5,16 @@ package servlet;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import bean.Product;
-import dao.ProductDAO;
+import bean.SaleList;
+import dao.SaleDAO;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-/**
- * 書籍管理システムにおける書籍一覧機能に関する処理をおこなうサーブレットクラス
- *
- * @author KandaITSchool
- *
+/*
+ * 管理者メニューにおいて、出品されている商品とその出品者、取引状況を一覧表示するサーブレットクラス
  */
 @WebServlet("/saleList")
 public class SaleListServlet extends HttpServlet {
@@ -28,18 +25,17 @@ public class SaleListServlet extends HttpServlet {
 		String cmd = "";
 
 		try {
-			
 			// 入力データの文字コードの指定
 			request.setCharacterEncoding("UTF-8");
 			
 			// ① BookDAOをインスタンス化する
-			ProductDAO ProductDaoObj = new ProductDAO();
+			SaleDAO SaleDaoObj = new SaleDAO();
 
 			// ②関連メソッドを呼び出し、戻り値としてBookオブジェクトのリストを取得する
-			ArrayList<Product> product_list = ProductDaoObj.selectAll();
+			ArrayList<SaleList> salelist = SaleDaoObj.selectAll();
 
 			// ③②で取得したListをリクエストスコープに"book_list"という名前で格納する
-			request.setAttribute("product_list",product_list);
+			request.setAttribute("salelist",salelist);
 
 		} catch (IllegalStateException e) {
 			

@@ -41,7 +41,7 @@ public class ProductInformationServlet extends HttpServlet {
 
 			// 詳細情報のエラーチェック
 			if (product.getName() == null) {
-				error = "表示対象の商品が存在しない為、詳細情報は表示出来ませんでした。";
+				error = "表示対象の商品が存在しない為、商品情報は表示出来ませんでした。";
 				cmd = "goods_list";
 				return;
 			}

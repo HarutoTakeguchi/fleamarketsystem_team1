@@ -1,10 +1,8 @@
 <!-- 作成：畑 -->
-
 <%@page contentType="text/html; charset=UTF-8"%>
 <%@page import="java.util.ArrayList,bean.User,util.MyFormat"%>
 
 <%
-ArrayList<User> user_list = (ArrayList<User>) request.getAttribute("user_list");
 MyFormat format = new MyFormat();
 %>
 
@@ -15,12 +13,12 @@ MyFormat format = new MyFormat();
 <script src="<%=request.getContextPath()%>/js/jquery-3.7.1.js"></script>
 <title>ユーザー一覧</title>
 
-
 <style>
 .title {
 	border: 5px solid #85b9e9;
 	background-color: #85b9e9;
 	padding-top: 20px;
+	text-align: center;
 }
 
 table {
@@ -51,6 +49,7 @@ th, td {
 </style>
 </head>
 <body style="background-color: #f0f8ff;">
+	<%@include file="/common/header.jsp"%>
 	<center>
 		<h1 class="title">ユーザー一覧</h1>
 	</center>
@@ -58,11 +57,14 @@ th, td {
 	<div style="margin-bottom: 250px">
 		<table style="margin: auto; width: 850px">
 			<tr>
-				<td style="text-align: center; width: 100px">[<a href="<%=request.getContextPath()%>/view/admin_menu.jsp">管理者メニュー</a>]
+				<td style="text-align: center; width: 100px">[<a
+					href="<%=request.getContextPath()%>/view/admin_menu.jsp">管理者メニュー</a>]
 				</td>
-				<td style="text-align: center; width: 60px">[<a href="<%=request.getContextPath()%>/saleList">出品一覧</a>]
+				<td style="text-align: center; width: 60px">[<a
+					href="<%=request.getContextPath()%>/saleList">出品一覧</a>]
 				</td>
-				<td style="text-align: center; width: 60px">[<a href="<%=request.getContextPath()%>/saleConfirmation">売上確認</a>]
+				<td style="text-align: center; width: 60px">[<a
+					href="<%=request.getContextPath()%>/soldConfirm">売上確認</a>]
 				</td>
 				<td style="width: 100px">&nbsp;</td>
 				<td style="width: 200px">&nbsp;</td>
@@ -84,9 +86,10 @@ th, td {
 			</tr>
 
 			<%
-			if (user_list != null) {
-				for (int i = 0; i < user_list.size(); i++) {
-					User user = (User) user_list.get(i);
+			ArrayList<User> list = (ArrayList<User>) request.getAttribute("user_list");
+			if (list != null) {
+				for (int i = 0; i < list.size(); i++) {
+					User user = (User) list.get(i);
 			%>
 			<tr class="c">
 				<td class="a" :style="text-align: center; width: 200px"><%=user.getUserid()%></td>
@@ -107,7 +110,11 @@ th, td {
 				<td class="a" :style="text-align: center; width: 200px">&nbsp;</td>
 				<td class="a" :style="text-align: center; width: 200px">&nbsp;</td>
 				<td class="a" :style="text-align: center; width: 200px">&nbsp;</td>
-				<td class="a" :style="text-align: center; width: 250px" colspan="2">&nbsp;</td>
+				<td class="a" :style="text-align: center; width: 200px">&nbsp;</td>
+				<td class="a" :style="text-align: center; width: 200px">&nbsp;</td>
+				<td class="a" :style="text-align: center; width: 200px">&nbsp;</td>
+				<td class="a" :style="text-align: center; width: 200px">&nbsp;</td>
+				<td class="a" :style="text-align: center; width: 200px">&nbsp;</td>
 			</tr>
 			<%
 			}
@@ -115,35 +122,38 @@ th, td {
 
 			</div>
 		</table>
+
+		<%@include file="/common/footer.jsp"%>
+
 		<script>
-            $(function() {
-                $(".b:nth-child(odd)").addClass("odd");
-                $(".c:nth-child(even)").addClass("even");
+			$(function() {
+				$(".b:nth-child(odd)").addClass("odd");
+				$(".c:nth-child(even)").addClass("even");
 
-                $(".c:not(:first-child)").mouseover(function() {
-                    $(this).addClass("hover");
-                }).mouseout(function() {
-                    $(this).removeClass("hover");
-                });
+				$(".c:not(:first-child)").mouseover(function() {
+					$(this).addClass("hover");
+				}).mouseout(function() {
+					$(this).removeClass("hover");
+				});
 
-                $(".a")
-                        .mouseover(
-                                function() {
-                                    $(
-                                            ".a:nth-child("
-                                                    + ($(".a").index(this)
-                                                            % $(".b").length + 1)
-                                                    + ")").addClass("hover");
-                                })
-                        .mouseout(
-                                function() {
-                                    $(
-                                            ".a:nth-child("
-                                                    + ($(".a").index(this)
-                                                            % $(".b").length + 1)
-                                                    + ")").removeClass("hover");
-                                });
-            });
-        </script>
+				$(".a")
+						.mouseover(
+								function() {
+									$(
+											".a:nth-child("
+													+ ($(".a").index(this)
+															% $(".b").length + 1)
+													+ ")").addClass("hover");
+								})
+						.mouseout(
+								function() {
+									$(
+											".a:nth-child("
+													+ ($(".a").index(this)
+															% $(".b").length + 1)
+													+ ")").removeClass("hover");
+								});
+			});
+		</script>
 </body>
 </html>

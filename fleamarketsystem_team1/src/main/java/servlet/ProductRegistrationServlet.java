@@ -51,7 +51,7 @@ public class ProductRegistrationServlet extends HttpServlet {
 			// 商品名未入力
 			if (name.equals("")) {
 				error = "商品名が未入力の為、商品登録処理は行えませんでした。";
-				cmd = "isert";
+				cmd = "insert";
 				return;
 			}
 
@@ -79,6 +79,20 @@ public class ProductRegistrationServlet extends HttpServlet {
 				return;
 			}
 			
+			// 種類未入力
+			if (category.equals("")) {
+				error = "種類が未入力の為、商品登録処理は行えませんでした。";
+				cmd = "list";
+				return;
+			}
+			
+			// 備考未入力
+			if (description.equals("")) {
+				error = "備考が未入力の為、商品登録処理は行えませんでした。";
+				cmd = "list";
+				return;
+			}
+			
 			int quantity = Integer.parseInt(strQuantity);
 
 			// 受け取とった入力情報をProductオブジェクトに格納
@@ -98,7 +112,7 @@ public class ProductRegistrationServlet extends HttpServlet {
 			request.getRequestDispatcher("/productList").forward(request, response);
 
 		} catch (IllegalStateException e) {
-			error = "DB接続エラーの為、書籍登録処理は行えませんでした。";
+			error = "DB接続エラーの為、商品登録処理は行えませんでした。";
 			cmd = "logout";
 			return;
 		} catch (Exception e) {

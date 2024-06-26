@@ -1,3 +1,5 @@
+//作成：内山
+
 package dao;
 
 import java.sql.Connection;
@@ -35,8 +37,6 @@ public class PurchaseHistoryDAO {
 		Connection con = null;
 		Statement smt = null;
 		
-		PurchaseHistory purchaseHistory = new PurchaseHistory();
-		
 		//戻り値の設定
 		ArrayList<PurchaseHistory> list = new ArrayList<PurchaseHistory>();
 		
@@ -57,11 +57,13 @@ public class PurchaseHistoryDAO {
 			
 			//結果セットからデータを取り出して、PurchaseHistoryオブジェクトに格納する
 			while(rs.next()) {
+				PurchaseHistory purchaseHistory = new PurchaseHistory();
 				purchaseHistory.setName(rs.getString("name"));
 				purchaseHistory.setPrice(rs.getInt("price"));
 				purchaseHistory.setQuantity(rs.getInt("quantity"));
 				purchaseHistory.setShipment_status(rs.getString("shipment"));
 				purchaseHistory.setDeposit_status(rs.getString("deposit"));
+				list.add(purchaseHistory);
 			}
 			
 		} catch (Exception e) {

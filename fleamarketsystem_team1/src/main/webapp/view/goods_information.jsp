@@ -1,8 +1,11 @@
-<%--作成者小澤 --%>
+<%--
+作成：小澤
+修正：石井
+--%>
 <%@page contentType="text/html; charset=UTF-8"%>
 <%@page import="bean.Product, util.MyFormat"%>
 <%
-Product product = (Product)request.getAttribute("product");
+Product product = (Product) request.getAttribute("product");
 MyFormat format = new MyFormat();
 %>
 
@@ -12,7 +15,7 @@ MyFormat format = new MyFormat();
 <meta charset="UTF-8">
 <title>商品情報</title>
 <style>
-.title {
+.title { 
 	border: 5px solid #66cdaa;
 	background-color: #66cdaa;
 	padding-top: 20px;
@@ -31,7 +34,9 @@ MyFormat format = new MyFormat();
 			<td style="text-align: center; width: 80px">[<a
 				href="<%=request.getContextPath()%>/view/memberMenu.jsp">メニュー</a>]
 			</td>
-
+			<td style="text-align: center; width: 80px">[<a
+				href="<%=request.getContextPath()%>/productList">商品一覧</a>]
+			</td>
 			<td style="width: 200px">&nbsp;</td>
 		</tr>
 
@@ -46,54 +51,37 @@ MyFormat format = new MyFormat();
 		<tr>
 			<td
 				style="text-align: center; background-color: #66cdaa; width: 120px">商品名</td>
+			<td style="text-align: center; width: 120px"><%=product.getName()%></td>
 		</tr>
 
 		<tr>
 			<td
 				style="text-align: center; background-color: #66cdaa; width: 120px">価格</td>
+			<td style="text-align: center; width: 120px"><%=product.getPrice()%></td>
 		</tr>
 
 		<tr>
 			<td
 				style="text-align: center; background-color: #66cdaa; width: 120px">種類</td>
+			<td style="text-align: center; width: 120px"><%=product.getCategory()%></td>
 		</tr>
 
 		<tr>
 			<td
 				style="text-align: center; background-color: #66cdaa; width: 120px">個数</td>
+			<td style="text-align: center; width: 120px"><%=product.getQuantity()%></td>
 		</tr>
 
 		<tr>
 			<td
 				style="text-align: center; background-color: #66cdaa; width: 120px">備考</td>
-		</tr>
-		<%-- データ入力 --%>
-		<tr>
-			<td style="text-align: center; width: 120px"><%=product.getName()%></td>
-		</tr>
-
-		<tr>
-			<td style="text-align: center; width: 120px"><%=product.getPrice()%></td>
-		</tr>
-
-		<tr>
-			<td style="text-align: center; width: 120px"><%=product.getCategory()%></td>
-		</tr>
-
-		<tr>
-			<td style="text-align: center; width: 120px"><%=product.getQuantity()%></td>
-		</tr>
-
-		<tr>
 			<td style="text-align: center; width: 120px"><%=product.getDescription()%></td>
 		</tr>
-
-
-
+		<%-- データ入力 --%>
 	</table>
 
 
-	<form action="<%=request.getContextPath()%>/Purchase">
+	<form action="<%=request.getContextPath()%>/Purchase" method="post">
 		<table style="margin: auto; padding: 100px;">
 
 			<tr style="margin: auto">

@@ -4,8 +4,10 @@ package servlet;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import bean.MAil;
 import bean.Product;
 import bean.User;
+import dao.GetMailDAO;
 import dao.OrderDAO;
 import dao.ProductDAO;
 import jakarta.servlet.ServletException;
@@ -16,7 +18,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
 @WebServlet("/Purchase")
-public class PurchaseServlet extends HttpServlet{
+public class PurchaseServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -26,30 +28,34 @@ public class PurchaseServlet extends HttpServlet{
 		try {
 			//セッションで"user"を取得
 			HttpSession session = request.getSession();
-			User user = (User)session.getAttribute("user");
+			User user = (User) session.getAttribute("user");
 			//セッション切れはerror.jspへ
 			if (user == null) {
 				error = "セッション切れの為、購入は出来ません。";
 				cmd = "login";
 				return;
-			 }
+			}
 			//パラメーターからproductidを取得
 			String productid = (String) request.getParameter("product_id");
-			
+
 			//購入処理。一件ずつ購入するので受け取ったproductidをもとに処理を進める。
 			ProductDAO productDao = new ProductDAO();
-			OrderDAO orderDao= new OrderDAO();
+			OrderDAO orderDao = new OrderDAO();
 			ArrayList<Product> product_list = new ArrayList<Product>();
-			
+
 			Product product = productDao.selectByProduct(productid);
 			product_list.add(product);
 			orderDao.insert(product);
-			
-			request.setAttribute("product_list", product_list);
-			
 
-			
-		}catch (IllegalStateException e) {
+			request.setAttribute("product_list", product_list);
+
+			GetMailDAO mailDao = new GetMailDAO();
+
+			MAil mail = mailDao.getRegistarMail(productid);
+
+			request.setAttribute("mail", mail);
+
+		} catch (IllegalStateException e) {
 			error = "DB接続エラーの為、購入は出来ません。";
 			cmd = "logout";
 
@@ -70,6 +76,6 @@ public class PurchaseServlet extends HttpServlet{
 			}
 
 		}
-			
+
 	}
 }

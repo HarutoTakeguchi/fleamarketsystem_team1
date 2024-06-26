@@ -23,6 +23,9 @@ public class Order {
 	 * 売上日
 	 */
 	private String solddate;
+	
+	
+	private int orderno;
 
 	/**
 	 * コンストラクタ<br>
@@ -110,4 +113,12 @@ public class Order {
 	public void setSolddate(String solddate) {
 		this.solddate = solddate;
 	}
+	
+	public void setOrderno(int orderno) {
+		this.orderno=orderno;
+	}
+	public int getOrderno() {
+		return orderno;
+	}
+	
 }

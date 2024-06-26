@@ -1,4 +1,6 @@
 //作成者：石井
+//出品されている商品一覧を表示する機能
+//ユーザー側の機能
 package servlet;
 
 import java.io.IOException;
@@ -35,7 +37,7 @@ public class ProductListServlet extends HttpServlet {
 			request.setAttribute("product_list", productList);
 
 		} catch (IllegalStateException e) {
-			error = "DB接続エラーの為、一覧表示は行なえませんでした。";
+			error = "DB接続エラーの為、商品情報画面は表示できませんでした。";
 			cmd = "logout";
 		} catch (Exception e) {
 			error = "予期せぬエラーが発生しました。";

@@ -36,7 +36,7 @@
 				<tr><td><a href="<%=request.getContextPath()%>/saleList">出品一覧</a></td></tr>
 				<tr><td>&nbsp;</td></tr>
 				
-				<tr><td><a href="<%=request.getContextPath()%>/saleConfirmation">売上確認</a></td></tr>
+				<tr><td><a href="<%=request.getContextPath()%>/soldConfirm">売上確認</a></td></tr>
 				<tr><td>&nbsp;</td></tr>
 				
 				<tr><td><a href="<%=request.getContextPath()%>/logout">ログアウト</a></td></tr>

@@ -225,5 +225,51 @@ public class ProductDAO {
 			}
 		}
 	}
+	
+	/**
+	 * 出品情報を取得するメソッド
+	 */
+	public ArrayList<Product> selectBySale(String user_id) {
+		
+		Connection con = null;
+		Statement smt = null;
+		
+		ArrayList<Product> list = new ArrayList<Product>();
+		
+		try {
+
+			//getConnection()メソッドを利用してConnectionオブジェクトを生成
+			con = getConnection();
+
+			//createStatement()メソッドを利用してStatementoオブジェクトを生成
+			smt = con.createStatement();		
+			
+
+			//SQL文を文字列として定義
+			String sql = "select product_id,name from product_info where user_id = " + user_id;
+			
+			//SQL文を発行し結果セットを取得する
+			ResultSet rs = smt.executeQuery(sql);
+			
+			//結果セットからデータを取り出して、Productオブジェクトに格納する
+			while(rs.next()) {
+				Product Product = new Product();
+				Product.setProductid(rs.getInt("product_id"));
+				Product.setName(rs.getString("name"));
+				list.add(Product);
+			} 
+			
+		} catch (Exception e) {
+			throw new IllegalStateException(e);
+		} finally {
+			if ( smt != null ) {
+				try { smt.close(); } catch (SQLException ignore) { }
+			}
+			if ( con != null ) {
+				try { con.close(); } catch (SQLException ignore) { }
+			}
+		}
+		return list;
+	}
 
 }

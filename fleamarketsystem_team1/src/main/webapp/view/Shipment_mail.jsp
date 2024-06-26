@@ -29,7 +29,7 @@
 	<table style="margin: auto; padding: 100px;">
 
 		<tr style="margin: auto">
-			<th><a href="<%=request.getContextPath()%>/view/menu.jsp">
+			<th><a href="<%=request.getContextPath()%>/view/memberMenu.jsp">
 					メニューに戻る</a></th>
 		</tr>
 

@@ -5,8 +5,8 @@ package servlet;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import bean.SaleStatus;
-import dao.SaleStatusDAO;
+import bean.Product;
+import dao.ProductDAO;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -26,11 +26,13 @@ public class SaleStatusServlet extends HttpServlet {
 			// 入力データの文字コードの指定
 			request.setCharacterEncoding("UTF-8");
 			
+			String user_id = request.getParameter("user_id");
+			
 			// ① Sale_statusDAOをインスタンス化する
-			SaleStatusDAO saleStatusDaoObj = new SaleStatusDAO();
+			ProductDAO ProductDaoObj = new ProductDAO();
 
 			// ②関連メソッドを呼び出し、戻り値としてSale_statusオブジェクトのリストを取得する
-			ArrayList<SaleStatus> list = saleStatusDaoObj.selectBySaleStatus();
+			ArrayList<Product> list = ProductDaoObj.selectBySale(user_id);
 
 			// ③②で取得したListをリクエストスコープに"sale_status_list"という名前で格納する
 			request.setAttribute("sale_status_list",list);
